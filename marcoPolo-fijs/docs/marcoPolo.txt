@@ -1,0 +1,167 @@
+Afueras de Venecia
+Un día soleado, de aire fresco. Venecia se adivina en lontananza, mientras la serpenteante caravana se acerca, poco a poco, a la ciudad.
+
+Notas el roce de tu cuerpo contra el áspero contorno de un sobre. Sabes que ese sobre contiene la importante misión encargada por el Khan.
+
+> i
+lentes,
+estatuilla,
+sobre
+
+> ex sobre
+Es una misiva del rey de toda Mongolia, incluyendo China: Kublai Khan, el Khan o así conocido en nuestra tierra, el emperador. En esta carta, el Khan pide hombres ilustrados al Duce de Venecia, hombres que viajen a la China para enseñar a los mongoles el modo de vida occidental. El Khan, Kublai Khan, te nombró su emisario, una gran responsabilidad que aceptaste con orgullo, pensando en ser el puente de oriente con occidente.
+
+> coge sobre
+Cogido.
+
+> e
+
+.end
+
+Palazzo del Duce
+La caravana termina su recorrido, entrando en la ciudad. Aún con el ritmo tranquilo de la caravana gobernando tu cuerpo, diriges tu montura hacia el palazzo del Duce...
+
+Tras solicitar audiencia, como embajador del Gran Khan, eres conducido a la sala del trono...
+
+La sala del trono está ricamente decorada, aunque no tanto como la de Kublai Khan. Acostumbrado ya al regusto exótico de oriente, occidente parece mucho más sobrio.
+
+Puedes ver al Duce.
+
+> ex duce
+El Duce, rey de Venecia, envuelto en ricos topajes, escucha pacientemente en su trono. En ocasiones, te parece mira a hurtadillas a derecha e izquierda.
+
+>habla con duce
+
+Marco: "Duce, su majestad, traigo una carta del gran Khan de Mongolia ..."
+
+El Duce ladea la cabeza, su curiosidad picada por lo exótico ...
+
+Duce: "¿Qué me requiere ese gobernante de tierras tan lejanas?"
+
+Un personajillo pequeño emerge de las penumbras del trono ...
+Sus ropajes le denuncian como franciscano; ¿Un miembro del Santo Oficio?
+
+Obispo de Venecia: "Nada bueno, Duce; ¿Qué podría desear ese hereje del este, ese habitante de las antiguas tierras de Sodoma y Gomorra?"
+
+La respuesta escapa de tus labios antes siquiera de poder pensar en su oportunidad o conveniencia.
+Te diriges al Duce, pero tu comentario está claramente orientado hacia el obispo ... 
+
+Marco: "En realidad, mi señor, Mongolia se encuentra más al este. Y más al norte."
+
+Es fácil identificar este punto de la conversación como aquel en el que todo se torció, definitivamente. Apenas tuviste tiempo siquiera de esbozar al Duce lo que el Khan deseaba de él, pero tal y como comprendes perfectamente, la guerra de poder entre el Papado y el Duce te ha convertido en víctima propiciatoria.
+Desde la subida al Trono Papal de Clemente IV, Venecia y Vaticano se habían enzarzado en una especie de guerra fría, en la que ambos trataban de demostrar cuál de ellos ... "mandaba".
+Se trata de una situación parecida a las antiguas luchas de los reinos cristianos de Hispania, Castilla y León, en el 925.
+
+Probablemente, una de las mejores intervenciones fuera la del obispo ...
+
+Obispo de Venecia: "Duce, debemos considerar, además del desagravio que pueda suponer para nuestros freires enseñar a esos herejes, adoradores del diablo, el camino de la verdad, que quizás sólo deseen conseguir información para una futura invasión."
+
+.end
+
+Escaleras
+
+.. las ansias expansionistas de los Mongoles no dejan de ser suficientemente fuertes como para que lo dicho por el franciscano, con el tiempo, no pudiera ser verdad ... claro que para eso tendría que saber algo de geografía.
+
+Las balbuceantes respuestas del antaño poderoso Duce no dejaron de tener tampoco su interés (por decir algo):
+
+Duce: "Eminencia, no creo que debamos ..."
+
+
+Duce: "... pero eminencia ..."
+
+
+Duce: "... por favor, eminencia ..."
+
+
+Casi ajeno a la escena, pese a ser el protagonista, no puedes dejar de pensar en el cansancio que te produce todo ésto.
+Al fin y al cabo, sobrevivir a la Ruta de la Seda, en viaje de ida a y vuelta, para ser quemado en la hoguera como hereje ... no deja de ser irónico.
+
+Los guardias venecianos te rodean y te conducen hacia los sótanos de palacio... Bajando escaleras...
+
+Gruesos y húmedos muros de fuerte roca delimitan este pasillo, con unas escaleras que permiten subir hacia el norte, y la puerta de una celda hacia el sur.
+
+Un guardia yace tendido en el suelo, inmóvil, presumiblemente debido a la explosión.
+
+> ex guardia
+Está chamuscado, y su pica ha desaparecido, seguramente rota en mil pedazos. Parece estar inconsciente, aunque bien, en conjunto.  Estaría bien comprobar que se encuentra perfectamente.
+El guardia gime brevemente ... ¡finalmente, no le ha pasado nada!
+
+> habla con guardia
+Su respiración se agita...... sus ojos parpadean...
+
+Repentinamente, sus ojos se abren de par en par. Su mirada se llena de pánico al verte inclinado sobre él, y empieza a vociferar, mientras se aparta de ti compulsivamente.El guardia, sin dar tiempo a explicaciones, sale corriendo hacia el norte lanzando unos guturales bramidos, sin duda provocados por el miedo cerval provocado por tu persona, capaz de derribar una puerta mediante una aterradora explosión. Ahora no serías ya capaz de repetirlo, pero él eso no lo sabe.
+Mientras sube las escaleras, puedes oir como grita algo de que eres un hechicero, que practicas magia negra, o algo por el estilo.
+
+Quizás ahora quieran quemarte por brujo.
+Quizás el guardia haya creado la confusión necesaria para poder salir sin que nadie te detenga.
+
+> n a Canales
+
+.end
+
+Celda
+
+Un limitado espacio de húmeda piedra es tu morada ahora,
+cuando otrora parecían esperarte sólo las más altas prebendas. Las paredes, suelos y techos están compuestos de desnuda roca, con pedazos de musgo esparcidos aquí y allá. Una ventana de gruesos barrotes proporciona ventilación y luz solar, a la vez que una puerta que nadie abrirá proporciona la única salida de la estancia.
+Los guardias te tiran al interior de la celda. Tras de ti, la puerta se cierra.
+
+
+
+Recuerdas como has llegado hasta aquí ...
+desde las salas del palacio del Duce, aquí, en Venecia ...
+y desde más allá, en oriente, en el Imperio Mongol ...
+tú, Marco Polo, como embajador del Gran Khan.
+
+Y, diablos, no deja de ser propio de una comedia callejera ...
+  
+> ex estatuilla
+La figura representa a Diana, la cazadora. El mismísimo Khan te la regaló con una enigmática sonrisa. Su admiración por la antigua Grecia era bien conocida, y siempre pensaste que su sonrisa se trataba de algún tipo de complicidad de un habitante de la estepa con un habitante del Mediterráneo.
+
+> coge lentes
+Cogidos.
+
+> ex lentes
+Son unos cristales que, perfectamente graduados, permiten corregir tu cansada vista.
+
+> coge lentes
+Cogidas.
+
+> rompe estatuilla
+
+Se rompe en mil pedazos al chocar contra el suelo ...
+
+En su interior, un polvo negro de inconfundible olor ha quedado amontonado entre los restos de la estatuilla, que descartas rápidamente.
+Se trata de pólvora. Recuerdas ahora la divertida reacción del Khan ante tu interés desusado sobre el extraño polvo que permitía lanzar proyectiles festivos al aire.
+
+
+> ex polvora
+Un polvo negro de peculiar olor. Lo cierto es que te recuerda a lo que los habitantes de la aún más lejana Cipango conocen como Umami, un sabor intermedio encontrado en un famoso caldo de su cocina tradicional.
+
+> coge polvora
+Cogida.
+
+>ex ventana
+Un estrecho agujero en la piedra, atravesado por gruesos barrotes, es la única salida abierta al mundo. Desde allí llega la luz que entra en la estancia. El sol calienta con fuerza.
+
+>ex puerta
+Es recia y firme, a pesar de la humedad. Los remaches de acero (eso sí, algo herrumbosos) y el mantenimiento deben ser la explicación.
+
+>ex paredes
+Las paredes son de dura roca, ni una sola fisura podría proporcionar la más mínima posibilidad de escape.
+
+> calienta polvora
+De la polvora comienza a salir un humillo de olor desagradable ...
+Con mucho cuidado, acumulas el polvo humeante lo más cerca posible de la puerta, y continúas enfocándola con las lentes.
+Una potente deflagración te empuja contra el muro de la ventana, al sur.
+Cuando te reincorporas, observas que la puerta casi ha desaparecido de donde estaba.
+
+> n a Escaleras
+
+.end
+
+Canales
+
+Abandonas la cárcel del palacio del Duce por la mismísima puerta principal, mientras los guardias venecianos huyen aterrados.
+Mientras tanto, sabes que la confusión no durará eternamente, pero empiezas a pensar en un próximo viaje a oriente.
+¿Será demasiado precipitado salir ahora mismo?
+

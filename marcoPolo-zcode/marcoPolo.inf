@@ -1,0 +1,841 @@
+! generado por INFORMATE@txtMap, v0.2/ v0.4 20061010
+! Thu Mar  1 12:02:30 2007
+
+
+Constant Historia "^Marco Polo";
+Constant Titular  "^La vuelta a casa del explorador...^^";
+
+Release 4;
+
+Constant HAY_CURIOSIDADES;
+Constant PUNTUACION_MAX 4;
+Constant ADMITIR_COMANDO_SALIDAS;
+
+[ curiosidades;
+        "Marco Polo, efectivamente, viajó a la China y, aún no siendo el primero en hacerlo,
+        sí fue el primero en darle difusión a sus viajes, cuirosidades y exotismos en Oriente.^
+        También la carta que le llevó al Duce de Venecia es verídica (aunque dirigida al Papa, que no al Duce),
+        aunque nunca fue encarcelado por
+        tal motivo. Fue encarcelado al ser capturado en una batalla naval posterior al primero
+        de sus viajes, y durante su encierro, dictó el libro que le daría la fama mundial que hoy
+        en día posee.
+        ^
+        También se sospecha que fue el primero en traerse pólvora de la China (aunque la introducción de la
+        pólvora en Europa es uno de esos eventos nebulosos).
+        ^
+        ^
+        El Umami fue descubierto (o, mejor, nominado) a comienzos del siglo XX, y probablemente la pólvora
+        no tenga el sabor que se le otorga en este relato.
+        ^
+        ^
+        Todo el resto es invención mía, y aunque a lo mejor no sea demasiado original (me parece que
+        se cumplen demasiados tópicos, como el de ~una aventura en una celda~), creo que cumple
+        con los requisitos de participación en la RapidoComp de los Premios Hispanos 2006.
+         ^
+         ^
+         Felicidades por haber terminado la aventura.^
+         Espero que te hayas divertido tanto jugándola como yo haciéndola.
+         ^
+         ^
+         Mándame tus comentarios a: baltasarq@@64yahoo.es^
+        ";
+];
+
+Include "BajoNivel";
+Include "EParser";
+Include "Acciones";
+Include "Gramatica";
+
+[ espera;
+	esperarTecla( "^...^" );
+];
+
+object limbo "Limbo"
+    with descripcion "limbo"
+;
+
+class Localidad
+has luz;
+
+class Objeto;
+
+class ObjetoEstatico
+class Objeto
+has escenario;
+
+[ inicializar;
+    cambiarJugador( marcoPolo );
+    localizacion = AFUERAS_VENECIA;
+
+    arrancarReloj( AFUERAS_VENECIA, 6 );
+
+    ! Objetos de inventario
+    move OBJ_CARTA to jugador;
+    move OBJ_ESTATUILLA to jugador;
+    move OBJ_LENTES to jugador;
+
+	print "(Aquellos que juegan por primera vez deben teclear 'AYUDA'
+		    en el prompt: '>'. Pulsa ENTER cuando veas: '...').^";
+	espera();
+];
+
+! ================= LOCALIDADES ===============
+
+Localidad AFUERAS_VENECIA "Afueras de Venecia"
+with
+    primeraVez true,
+    tiempo_restante 6,
+    tiempo_agotado [;
+        print "La caravana termina su recorrido, entrando en la ciudad.^";
+		espera();
+        print "Aún con el ritmo tranquilo de la caravana gobernando tu cuerpo, diriges tu montura
+               hacia el palazzo del Duce...^";
+        espera();
+		print "Tras solicitar audiencia, como embajador del Gran Khan,
+           eres conducido a la sala del trono...^";
+		espera();
+		jugadorA( SALA_DEL_TRONO, 2 );
+    ],
+    descripcion [;
+        print "Un día soleado, de aire fresco.^Venecia se adivina en lontananza,
+                 mientras la serpenteante caravana se acerca,
+                 poco a poco, a la ciudad.^";
+        if ( self.primeraVez ) {
+            self.primeraVez = false;
+            print "^Notas el roce de tu cuerpo contra el áspero contorno de un sobre. Sabes
+                   que ese sobre contiene la importante misión encargada por el Khan.^";
+        }
+    ],
+    no_puedes_ir "Mejor esperar y finalizar el viaje con la caravana.",
+;
+
+Localidad SALA_DEL_TRONO "Sala del trono, en el Palazzo del Duce"
+with
+    no_puedes_ir "Sería un desagravio abandonar la sala con el Duce presente. No lo contarías.",
+    descripcion
+        "La sala del trono está ricamente decorada, aunque no tanto como la de Kublai Khan. Acostumbrado ya
+         al regusto exótico de oriente, occidente parece mucho más sobrio."
+;
+
+Localidad CELDA "Celda"
+with
+    antesLlegueObispo 100,
+    al_n [;
+        if ( ~~OBJ_PUERTA.destruida ) {
+            print (string) self.no_puedes_ir, "^";
+            rtrue;
+        } else {
+            print "Con cuidado, pasas al lado de los humeantes despojos de la puerta.^";
+            jugadorA( PASILLO, 2 );
+            rtrue;
+        }
+     ],
+    afuera [; <<ir obj_n>>; ],
+    no_puedes_ir "Es imposible. Muros, barrotes y puertas remachadas en acero impiden tu paso.",
+    descripcion "^Un limitado espacio de húmeda piedra es tu morada ahora,^cuando otrora parecían esperarte sólo las más altas prebendas. Las paredes, suelos y techos están compuestos de desnuda roca, con pedazos de musgo esparcidos aquí y allá. Una ventana de gruesos barrotes proporciona ventilación y luz solar, a la vez que una puerta que nadie abrirá proporciona la única salida de la estancia.",
+    cada_turno [;
+        --self.antesLlegueObispo;
+
+        if (  self.antesLlegueObispo == 0
+         && ~~OBJ_PUERTA.destruida )
+        {
+            move obispoVenecia to parent( self );
+            print "Escuchas unos ruidos de metal entrechocando, y finalmente, con un chirrido, la puerta de tu celda se abre.^";
+            print "El obispo entra en la estancia, tan enjuto y despreciable como siempre, acompañado de unos cuantos guardias.^";
+            obispoVenecia.decir( "Marco Polo, ha llegado tu hora..." );
+            print "Casi puedes adivinar una mueca de satisfacción en su rostro...^";
+            marcoPolo.decir( "No puedo decir que no me sorprenda, pero después de todo lo que he visto, la mía es una vida que ha merecido la pena vivir." );
+            print "No sabes si es porque realmente lo deseas mucho, o porque realmente sucede, pero la mueca del franciscano parece transformarse
+                       en furor^";
+            obispoVenecia.decir( "¡Llevadle al cadalso!" );
+            return explicacionFinalTeMueres();
+        }
+    ]
+;
+
+Localidad PASILLO "Pasillo"
+with
+    tiempo_restante 10,
+    no_puedes_ir "Los muros sólo permiten caminar hacia el sur, o subir las escaleras hacia el norte.",
+    descripcion [;
+                        "^Gruesos y húmedos muros de fuerte roca delimitan este pasillo, con unas escaleras que permiten subir hacia el norte,
+                          y la puerta de una celda hacia el sur.";
+    ],
+    adentro [; <<ir obj_s>>; ],
+    al_s [;
+        print "Con cuidado, pasas al lado de los humeantes despojos de la puerta.^";
+        jugadorA( CELDA, 2 );
+        rtrue;
+    ],
+    arriba [;
+        return self.terminar();
+    ],
+    al_n [;
+        return self.terminar();
+    ],
+    terminar [;
+        if ( guardia.despierto )
+                return explicacionFinalCorrecta();
+        else return explicacionFinalTeMueres();
+    ],
+    daemon [;
+            --self.tiempo_restante;
+
+            if ( self.tiempo_restante == 4 ) {
+                "Comienzas a oir un gran estrépito de pasos y armas entrechocando que vienen de más
+                 allá del pasillo.";
+            }
+            else
+            if ( self.tiempo_restante == 0 ) {
+                print "Los guardias irrumpen en la estancia, atemorizados pero firmes...^";
+                return explicacionFinalTeMueres();
+            }
+    ],
+;
+
+! ================= OBJETOS ===============
+
+ObjetoEstatico OBJ_ESCALERAS "escaleras" PASILLO
+with
+    nombre 'escaleras' 'escalera' 'escala',
+    descripcion "Pues sí, unas escaleras. También húmedas, por cierto.",
+    antes [;
+        meterse: return PASILLO.terminar();
+    ]
+;
+
+ObjetoEstatico OBJ_DECORACION "decoración" SALA_DEL_TRONO
+with
+    nombre 'decoracion',
+    descripcion "Pues eso, occidental. Muy sobria, para tu gusto actual.",
+;
+
+ObjetoEstatico OBJ_MONTURAS "monturas" AFUERAS_VENECIA
+with
+    nombre_f 'montura',
+    nombre_fp 'monturas',
+    nombre_m 'caballo' 'animal' 'bestia' 'corcel',
+    nombre_mp 'caballos' 'animales' 'bestias' 'corceles',
+    genero G_FEMENINO + G_PLURAL,
+    descripcion "Abandonados los camellos unas cuantas etapas atrás, los caballos son ahora vuestras fieles monturas.",
+;
+
+ObjetoEstatico OBJ_VENECIA "Venecia" AFUERAS_VENECIA
+with
+    nombre 'ciudad' 'venecia',
+    descripcion "Venecia se adivina directamente delante de vosotros, sus tejados relucen en la mañana.",
+has femenino;
+
+ObjetoEstatico OBJ_CARAVANA "caravana" AFUERAS_VENECIA
+with
+    nombre 'caravana' 'expedicion' 'ruta',
+    descripcion "La caravana serpentea por el camino, en ruta a la ciudad.",
+has femenino;
+
+ObjetoEstatico OBJ_BARROTES "barrotes" CELDA
+with
+    nombre 'BARROTES',
+    descripcion "Son anormalmente gruesos, y rascarlos con tus uñas desnudas no hace mella siquiera en la pintura.",
+has  nombreplural ;
+
+Objeto OBJ_LENTES "lentes"
+with
+    nombre 'lentes' 'gafas' 'lente' 'cristal',
+    descripcion "Son unos cristales que, perfectamente graduados, permiten corregir tu cansada vista.",
+    antes [;
+        enfocar:
+            if ( otro == OBJ_POLVORA ) {
+                    print "Enfocas la luz solar que entra por la ventana hacia la pólvora, utilizando tus propias lentes...^";
+                    espera();
+                    <<calentar OBJ_POLVORA OBJ_LENTES>>;
+            }
+            else
+            if ( otro == OBJ_SOL ) {
+                OBJ_SOL.explicaComoEnfocar();
+            }
+            else
+            if ( otro ~= Nothing )
+                        print "Haces humear ", (el) otro, ", pero como sabes que no te servirá de nada, lo dejas.^";
+            else     OBJ_SOL.explicaComoEnfocar();
+            rtrue;
+        dejar:
+            if ( localizacion ~= CELDA ) {
+                "No, ¡se perderían!";
+            }
+     ],
+     despues [;
+         dejar:
+             print "Depositas las lentes en el suelo, pero un desafortunado traspiés hace que resbalen de tus manos...^";
+             espera();
+             print "... rompiéndose en mil pedazos.^Bueno, quizás no haya mucho que leer por aquí.^";
+             move self to limbo;
+             rtrue;
+     ]
+has femenino nombreplural prenda;
+
+Objeto OBJ_POLVORA "pólvora" LIMBO
+with
+    nombre 'polvo' 'polvora' 'negro',
+    articulo "un poco de",
+    descripcion "Un polvo negro de peculiar olor. Lo cierto es que te recuerda a lo que los habitantes de la aún
+                       más lejana Cipango conocen como Umami, un sabor intermedio encontrado en un famoso
+                       caldo de su cocina tradicional.",
+     despues [;
+         coger: "Reúnes con cuidado todos los granos de polvo y los colocas en la palma de tu mano.";
+         dejar: "Con mucho cuidado, amontonas los granos de pólvora en el suelo.";
+     ],
+     antes [;
+         calentar:
+             if ( otro == OBJ_LENTES && ( OBJ_LENTES in jugador ) ) {
+                 OBJ_PUERTA.destruida = true;
+                 move self to limbo;
+                 move guardia to PASILLO;
+                 arrancarDaemon( PASILLO );
+                 print "De la polvora comienza a salir un humillo de olor desagradable...^";
+                 espera();
+                 print "Con mucho cuidado, acumulas el polvo humeante lo más cerca posible de la puerta, y continúas enfocándola
+                            con las lentes.^";
+                 espera();
+                 print "Una potente deflagración te empuja contra el muro de la ventana, al sur.^";
+                 espera();
+                 print "Cuando te reincorporas, observas que la puerta casi ha desaparecido de donde estaba.^";
+                 ++puntuacion;
+                 rtrue;
+             }
+             else "No tienes con qué calentarla.";
+     ],
+has femenino;
+
+Objeto OBJ_ESTATUILLA "estatuilla"
+with
+    nombre 'estatuilla' 'estatua' 'figura' 'diana' 'cazadora',
+    descripcion "Se trata de una estatuilla que representa a Diana, la cazadora. El mismísimo Khan te la regaló con una
+                       enigmática sonrisa. Su admiración por la antigua Grecia era bien conocida, y siempre pensaste que
+                       su sonrisa se trataba de algún tipo de complicidad de un habitante de la estepa con un habitante del Mediterráneo.",
+     antes [;
+             empujar, agitar:
+                 "¡Algo, como arena, hace ruido al sacudirse en su interior!";
+             dejar:
+                       if ( localizacion == CELDA ) {
+                           print "La estatuilla resbala de tus manos, y cae estrepitosamente al suelo.^";
+                           <<atacar self>>;
+                       } else "No, ¡la perderias!";
+             atacar:
+                       if ( localizacion == CELDA ) {
+                           print "Se rompe en mil pedazos al chocar contra el suelo...^";
+                           move self to limbo;
+                           move OBJ_POLVORA to CELDA;
+                           print "^En su interior, un polvo negro de inconfundible olor ha quedado amontonado entre los restos
+                                     de la estatuilla, que descartas rápidamente.^";
+                           print "Se trata de pólvora. Recuerdas ahora la divertida reacción del Khan ante tu interés desusado sobre
+                                     el extraño polvo que permitía lanzar proyectiles festivos al aire.^";
+                           ++puntuacion;
+                           rtrue;
+                       } else "Es un regalo del Khan, te apenaría mucho romperla sin necesidad.";
+              ]
+has femenino;
+
+Objeto OBJ_CARTA "carta"
+with
+    primeraVez true,
+    nombre 'CARTA' 'papel' 'pergamino' 'sobre',
+    descripcion [;
+            if ( localizacion == CELDA ) {
+                    print "Examinas el trozo de pergamino, el motivo de tu desgracia, con incredulidad.^^";
+            }
+
+            print "Es una misiva del rey de toda Mongolia, incluyendo China: Kublai Khan, el Khan o así conocido en nuestra tierra, el emperador.^";
+            if ( self.primeraVez ) {
+                self.primeraVez = false;
+                print "En esta carta, el Khan pide hombres ilustrados al Duce de Venecia, hombres
+                         que viajen a la China para enseñar a los mongoles el modo de vida occidental.^";
+                print "El Khan, Kublai Khan, te nombró su emisario, una gran responsabilidad que aceptaste con orgullo,
+                           pensando en ser el puente de Oriente con Occidente.^";
+            }
+            rtrue;
+     ],
+     antes [;
+             abrir:
+                 print "Abres cuidadosamente el sobre y lees su contenido, casi con reverencia.^^";
+                 <<examinar self>>;
+             dejar:
+                 if ( localizacion == AFUERAS_VENECIA ) {
+                     "No, ¡se perdería...!¡El Khan, que te nombró su emisario, se enojaría mucho!";
+                 }
+     ],
+has femenino  ;
+
+ObjetoEstatico OBJ_CELDA "celda"
+with
+    esta_en [;
+        if ( localizacion == CELDA or PASILLO )
+                    rtrue;
+        else    rfalse;
+    ],
+    nombre 'CELDA',
+    descripcion "Una fuerte puerta al norte, y un estrecho ventanuco al sur, son las únicas características destacables de este agujero cubicular."
+has femenino  ;
+
+ObjetoEstatico OBJ_PASILLO "pasillo" PASILLO
+with
+    nombre 'pasillo' 'pasaje',
+    descripcion "Unas escaleras al norte y una puerta al sur son lo único reseñable de este lugar."
+;
+
+ObjetoEstatico OBJ_MUSGO "musgo" CELDA
+with
+    nombre 'MUSGO',
+    descripcion "El musgo verde y parcialmente seco se esparce en las junturas de las rocas cercanas a las ventanas, aquellas donde la luz solar incide en algún momento del día. Un musgo pardo y húmedo se acumula en los rincones más oscuros de la celda."
+has   ;
+
+ObjetoEstatico OBJ_PARED "pared" CELDA
+with
+    nombre 'PARED' 'PAREDES',
+    descripcion "Las paredes son de dura roca, ni una sola fisura podría proporcionar la más mínima posibilidad de escape."
+has   ;
+
+ObjetoEstatico OBJ_PIEDRA "piedra" CELDA
+with
+    nombre 'PIEDRA' 'ROCA',
+    descripcion "Aquí y allá se encuentra recubierta de musgo, de humedad o de ambas cosas."
+has femenino  ;
+
+ObjetoEstatico OBJ_PUERTA "puerta" CELDA
+with
+    destruida false,
+    nombre 'PUERTA',
+    descripcion [;
+        if ( ~~self.destruida )
+                 "Es recia y firme, a pesar de la humedad. Los remaches de acero (eso sí, algo herrumbosos) y el mantenimiento deben ser la explicación.";
+        else  "La puerta está derruida y destrozada hacia un lado, permitiendo ahora el paso.";
+     ],
+has femenino  ;
+
+ObjetoEstatico OBJ_VENTANA "ventana" CELDA
+with
+    nombre 'VENTANA',
+    descripcion "Un estrecho agujero en la piedra, atravesado por gruesos barrotes, es la única salida abierta al mundo.
+                          Desde allí llega la luz que entra en la estancia. El sol calienta con fuerza.",
+     antes [;
+         buscarEn:
+             "El sol calienta con fuerza, y su luz entra vigorosamente por la ventana. Fuera puedes ver el exterior del palacio del Duce,
+              que ya conoces.";
+     ]
+has femenino  ;
+
+ObjetoEstatico OBJ_SOL "sol" CELDA
+with
+    nombre_m 'sol' 'rayo' 'haz',
+    nombre_f 'luz' 'solar',
+    descripcion "El sol entra con fuerza por la ventana, calentándote incluso desagradablemente cuando
+                          te interpones en la luz.",
+    antes [;
+        enfocar:
+                return OBJ_SOL.explicaComoEnfocar();
+    ],
+    explicaComoEnfocar [;
+        "Puedes tratar de ENFOCAR las lentes HACIA cualquier cosa.^";
+    ]
+;
+
+! === Explicaciones =================================================
+[ explicacionInicial;
+    "^^Recuerdas como has llegado hasta aquí...^desde las salas del palacio del Duce, aquí, en Venecia...^
+    y desde más allá, en oriente, en el Imperio Mongol...^
+     tú, Marco Polo, como embajador del Gran Khan.^^
+     Y, diablos, no deja de ser propio de una comedia callejera...";
+];
+
+[ caminoAlaCelda;
+        print "Los guardias venecianos te rodean y te conducen hacia los
+                   sótanos de palacio";
+
+        espera();
+
+        print "Bajando escaleras";
+        espera();
+
+        jugadorA( PASILLO, 2 );
+
+        print "Los guardias te empujan por el pasillo";
+
+        espera();
+
+        jugadorA( CELDA, 2 );
+
+        print "Los guardias te tiran al interior de la celda. Tras de ti, la puerta se cierra.^^";
+
+        explicacionInicial();
+
+        rtrue;
+];
+
+[ explicacionFinalCorrecta;
+    banderafin = 2;
+    ++puntuacion;
+    "^Abandonas la cárcel del palacio del Duce por la mismísima puerta principal, mientras los guardias
+       venecianos huyen aterrados.^
+       Mientras tanto, sabes que la confusión no durará eternamente, pero empiezas a pensar en un próximo
+       viaje a Oriente.^
+       ¿Será demasiado precipitado salir ahora mismo?^";
+];
+
+[ explicacionFinalTeMueres;
+    banderafin = 1;
+    "^Los guardias venecianos te apuntan amenazadoramente con sus picas y te rodean. Sabes cuál es el siguiente paso:
+       la escalera del cadalso. Tu destino, después de tantas aventuras, está sellado.";
+];
+
+! === Personajes =================================================
+class Personaje
+with
+    estado 0,
+    elNombre "Personaje",
+    articulo "a",
+    decir [s;
+        print "^";
+        Negrita();
+        print (string) self.elNombre;
+        Normal();
+        print ": ~";
+		Italica();
+        print (string) s;
+        Normal();
+        print "~";
+        espera();
+		print "^^";
+    ]
+has animado;
+
+Personaje marcoPolo
+with
+    nombre 'marco' 'polo',
+    elNombre "Marco",
+    descripcion [;
+        "Después del viaje a la China, puedes asegurar
+         que estás en muy buena forma para tu edad mediana.";
+    ]
+;
+
+Personaje duce "Duce" SALA_DEL_TRONO
+with
+    articulo "al",
+    nombre 'duce',
+    elNombre "Duce",
+    descripcion "El Duce, rey de Venecia, envuelto en ricos
+                 topajes, escucha pacientemente en su trono.
+         En ocasiones, te parece mira a hurtadillas
+         a derecha e izquierda.",
+    antes [;
+    hablarCon:
+       if ( self.estado == 0 ) {
+        self.estado = 1;
+        marcoPolo.decir(  "Duce, su majestad, traigo una carta del
+                   gran Khan de Mongolia..."
+        );
+
+        print "El Duce ladea la cabeza,
+           su curiosidad picada por lo exótico...^";
+
+        duce.decir( "¿Qué me requiere ese gobernante de tierras
+                         tan lejanas?"
+        );
+
+            print "Un personajillo pequeño emerge de las penumbras del trono...^";
+            print "Sus ropajes le denuncian como franciscano; ¿Un miembro del Santo Oficio?^";
+        move obispoVenecia to SALA_DEL_TRONO;
+        obispoVenecia.decir( "Nada bueno, Duce; ¿Qué podría desear ese hereje
+                 del este, ese habitante de las antiguas tierras
+                 de Sodoma y Gomorra?"
+        );
+       }
+       else
+       if ( self.estado == 1 ) {
+        self.estado = 2;
+
+            print "La respuesta escapa de tus labios antes siquiera
+                   de poder pensar en su oportunidad o conveniencia.^";
+
+        print "Te diriges al Duce, pero tu comentario está claramente orientado
+                   hacia el obispo... ^";
+
+        marcoPolo.decir(  "En realidad, mi señor, Mongolia se encuentra
+                   más al este. Y más al norte."
+        );
+
+        print "...^^";
+            print "Es fácil identificar este punto de la conversación como aquel
+           en el que todo se torció, definitivamente.
+                   Apenas tuviste tiempo siquiera de esbozar al Duce lo que el Khan
+           deseaba de él, pero tal y como
+           comprendes perfectamente, la guerra de poder entre el Papado y
+                   el Duce te ha convertido en víctima
+            propiciatoria.^";
+
+        print "Desde la subida al Trono Papal de Clemente IV, Venecia y
+                   Vaticano se habían enzarzado en una especie de guerra
+                   fría, en la que ambos trataban de demostrar cuál de ellos...
+                   ~mandaba~.^
+           Se trata de una situación parecida a las antiguas luchas de los
+                   reinos cristianos de Hispania, Castilla y León,
+           en el 925.^^";
+
+        espera();
+
+            print "Probablemente, una de las mejores intervenciones fuera la
+           del obispo...^"
+            ;
+
+        obispoVenecia.decir(  "Duce, debemos considerar, además del
+                   desagravio que pueda suponer para
+                   nuestros freires enseñar a esos herejes,
+                   adoradores del diablo, el camino de
+                                   la verdad, que quizás sólo deseen
+                                   conseguir información para una futura
+                                   invasión."
+        );
+
+            print "... las ansias expansionistas de los Mongoles no dejan de
+           ser suficientemente fuertes como para que lo dicho por
+           el franciscano, con el tiempo, no pudiera ser verdad...
+           claro que para eso tendría que saber algo de geografía.^"
+        ;
+
+        print "^Las balbuceantes respuestas del antaño poderoso Duce
+            no dejaron de tener tampoco su interés (por decir algo):^"
+        ;
+
+         duce.decir( "Eminencia, no creo que debamos..." );
+            duce.decir( "... pero eminencia..." );
+            duce.decir( "... por favor, eminencia..." );
+
+        print "^Casi ajeno a la escena, pese a ser el protagonista,
+           no puedes dejar de pensar en el cansancio que te
+           produce todo esto.^"
+        ;
+
+        print "Al fin y al cabo, sobrevivir a la Ruta de la Seda, en
+           viaje de ida a y vuelta, para ser quemado en la hoguera
+           como hereje... no deja de ser irónico.^^"
+        ;
+
+        espera();
+
+        caminoAlaCelda();
+       }
+
+       rtrue;
+    ]
+has transparente;
+
+ObjetoEstatico OBJ_ROPAJES "ropajes" duce
+with
+    nombre_mp 'ropajes' 'vestidos',
+    nombre_fp 'ropas',
+    nombre_f 'ropa',
+    nombre_m 'vestido',
+    descripcion "Pues sí, ricos ropajes. Mejor no mirar tan fijamente al Duce...",
+    genero G_PLURAL + G_MASCULINO,
+;
+
+Personaje guardia "guardia" limbo
+with
+    despierto false,
+    nombre 'guardia' 'veneciano' 'guardian',
+    articulo "un",
+    elNombre "guardia",
+    descripcion
+        "Está chamuscado, y su pica ha desaparecido, seguramente rota en mil pedazos.
+         Parece estar inconsciente, aunque bien, en conjunto.  Estaría bien comprobar que se
+         encuentra perfectamente.",
+    inicial "Un guardia yace tendido en el suelo, inmóvil, presumiblemente debido a la explosión.",
+    vida [;
+        despertarOtro:
+            move self to limbo;
+            self.despierto = true;
+            ++puntuacion;
+            pararDaemon( PASILLO );
+            arrancarDaemon( PASILLO, 30 );
+
+            print "...su respiración se agita";
+            espera();
+
+            print "... sus ojos parpadean...^";
+            espera();
+
+            print "Repentinamente, sus ojos se abren de par en par. Su mirada se llena de pánico al verte
+                       inclinado sobre él, y empieza a vociferar, mientras se aparta de ti compulsivamente.";
+            espera();
+
+            print " El guardia, sin dar tiempo a explicaciones, sale corriendo hacia el norte lanzando unos guturales
+             bramidos, sin duda provocados por el miedo cerval provocado por tu persona, capaz de derribar
+             una puerta mediante una aterradora explosión. Ahora no serías ya capaz de repetirlo, pero él
+             eso no lo sabe.^
+             Mientras sube las escaleras, puedes oír como grita algo de que eres un hechicero, que practicas
+             magia negra, o algo por el estilo.^^
+             Quizás ahora quieran quemarte por brujo.^";
+
+             if ( PASILLO.tiempo_restante > 1 )
+                         print "Quizás el guardia haya creado la confusión necesaria
+                                   para poder salir sin que nadie te detenga.^^";
+              else    print "^A pesar de tus esfuerzos, ruidos de armas entrechocando y pisadas al trote
+                                   provenientes de más arriba te
+                                   convencen de que has sido demasiado lento.^^";
+
+              rtrue;
+    ],
+    antes [;
+        empujar: << despertarOtro self>>;
+        atacar:
+            "Eso sería, cuando menos, una vileza. El guardia está inconsciente, mejor tratar
+             de reanimarlo.";
+    ],
+    cada_turno [;
+        if ( ( turnos % 3 ) == 0 ) {
+            "El guardia gime brevemente... ¡finalmente, no le ha pasado nada!";
+        }
+    ]
+;
+
+Personaje obispoVenecia "obispo"
+with
+    nombre 'obispo' 'franciscano' 'venecia' 'veneciano',
+    elNombre "Obispo de Venecia",
+    descripcion
+        "Enjuto, pequeño y con cara de ratón ruín, o es que lo odias tanto que así te parece.",
+    antes [;
+      hablarCon:
+     if ( ( turnos % 2 ) == 0 )
+        "Tratas de convencer al obispo del interés pacífico del
+         Khan en las tierras Mediterráneas, pero pronto el obispo,
+         con patente desdén, hace burla de tus explicaciones,
+                 descarta tu argumentación.";
+    else    "Hablas al obispo de las maravillas de oriente, de las ventajas
+                 del comercio con el papel moneda, las sedas, el arte...^
+                 El obispo, simplemente no está interesado, y aconseja al Duce
+                 en tu contra, de tus ~aviesas~ intenciones.";
+      atacar:
+    print "Harto de su intrusismo, te lanzas contra el obispo con un grito
+               de rabia.^";
+
+    marcoPolo.decir( "¡Muere, maldito!" );
+
+    print "Colocas tus manos alrededor de su cuello, y aprietas con todas
+               tus fuerzas, las de tus brazos, y las de tu alma, con todo el odio
+               que sientes contra este personaje.^";
+
+    if ( duce in localizacion ) {
+        obispoVenecia.decir( "ggghhaaaa..." );
+        obispoVenecia.decir( "¿Lo véis, Duce?. ¡No es más que un espía
+                      de los bárbaros de oriente!"
+        );
+
+        print "El Duce, visíblemente contrariado, hace un gesto... ^";
+        espera();
+    }
+
+    caminoAlaCelda();
+    rtrue;
+    ]
+;
+
+! === Gramatica ==================================================
+
+
+[ayudarSub;
+     negrita();
+     print "Marco Polo^";
+     normal();
+     italica();
+     print "una aventura conversacional para la RapidaComp de los Premios Hispanos de 2006,^por Baltasar, el arquero^^";
+     normal();
+
+     print "^Las órdenes siguientes son básicas y pueden encontrarse
+      en casi cualquier aventura conversacional. Algunas se han reducido a
+      uno o dos caracteres. El jugador puede tratar siempre de hacer otras acciones.^^";
+
+     Proporcional();
+     print "(N)orte               - Desplazarse al norte.^
+     (S)ur                 - Desplazarse al sur.^
+     (E)ste                - Desplazarse al este.^
+     (O)este               - Desplazarse al oeste.^
+     Arriba, Subir         - Subir.^
+     Abajo, Bajar          - Bajar.^
+     Ayuda                 - Esta ayuda.^
+     (ex)aminar x      - Da una descripción de x.^
+     (h)abla con x         - para hablar con el personaje x.^
+     (c)oge x, (d)eja x    - El objeto x pasa a ser o deja de ser llevado.^
+     (i)nventario          - Da una lista de los objetos llevados.^
+     ^^
+      Mándame tus comentarios a: baltasarq@@64yahoo.es^
+    ";
+    Normal();
+    rtrue;
+];
+
+[ calentarSub;
+  "Ahora no tiene utilidad calentar eso.";
+];
+
+[ enfocarSub;
+    "No tendría sentido enfocar nada con eso.";
+];
+
+[ hablarConSub;
+    "No tiene sentido hablar con ", (el) uno, ".";
+];
+
+Verb 'ayuda'
+    * -> ayudar
+;
+
+Extend 'pon' first
+    * noun 'entre' noun 'y' noun -> enfocar
+
+    * noun 'a//'/'hacia' noun -> enfocar reverse
+
+    * noun 'a//'/'hacia' noun -> enfocar reverse
+;
+
+Verb 'situa' = 'pon';
+
+Verb 'enfoca'
+   * noun 'a//'/'hacia' noun -> enfocar
+
+   * noun 'a//'/'hacia' noun -> enfocar
+
+   * noun 'con'/'mediante' noun 'a//'/'hacia' noun -> enfocar
+
+   * noun 'con'/'mediante' noun -> enfocar reverse
+   * noun 'a//'/'hacia' noun -> enfocar
+;
+
+Verb 'apunta' = 'enfoca';
+Verb 'dirige' = 'enfoca';
+VerboIrregular "dirigir" with imperativo 'dirige';
+
+Verb 'alinea'
+  * 'con' noun  noun 'y' noun -> enfocar
+
+  * noun 'con'/'mediante' noun 'y' noun -> enfocar
+
+  * noun 'con'/'mediante' noun 'y' noun -> enfocar
+
+  * noun 'con'/'y' noun -> enfocar
+  * noun 'a//'/'hacia' noun -> enfocar
+;
+
+Verb 'calienta'
+  * noun 'con'/'y' noun -> calentar
+;
+VerboIrregular "calentar" with imperativo 'calienta';
+
+Verb 'abofetea' 'reanima' 'avisa' 'recupera' 'cura'= 'despierta';
+
+Extend 'habla' replace
+    * 'con'/'a//'/'al' creature -> hablarCon
+;
+
+Verb 'c' = 'coge';
+Verb 'd' = 'deja';
+Verb 'h' = 'habla';

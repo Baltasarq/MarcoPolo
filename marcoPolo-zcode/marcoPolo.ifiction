@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <ifid>0f92a5de-a20a-43c6-a574-772ef89cdbce</ifid>
+            <format>glulx</format>
+        </identification>
+        <bibliographic>
+            <title>Marco Polo</title>
+            <author>Baltasar</author>
+            <language>ES</language>
+            <headline>El retorno a casa de Marco Polo</headline>
+            <genre>Fiction</genre>
+            <description>Marco Polo vuelve de su viaje a oriente con un encargo del gran Khan. Desgraciadamente, el recibimiento no será tan grato como esperaba...</description>
+        </bibliographic>
+        <contacts>
+            <authoremail>baltasarq@gmail.com</authoremail>
+            <url>http://caad.es/baltasarq/</url>
+        </contacts>
+        <release>
+            <version>4</version>
+            <releasedate>2012/01/18</releasedate>
+        </release>
+        <colophon>
+            <generator>Babble</generator>
+            <originated>2012/01/18</originated>
+        </colophon>
+    </story>
+</ifindex>

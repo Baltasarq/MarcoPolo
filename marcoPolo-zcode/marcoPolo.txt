@@ -1,0 +1,56 @@
+Celda
+
+Un limitado espacio de húmeda piedra es tu morada ahora,
+cuando otrora parecían esperarte sólo las más altas prebendas. Las paredes, suelos y techos están compuestos de desnuda roca, con pedazos de musgo esparcidos aquí y allá. Una ventana de gruesos barrotes proporciona ventilación y luz solar, a la vez que una puerta que nadie abrirá proporciona la única salida de la estancia.
+
+> i
+carta
+lentes
+
+> ex carta
+Una carta del rey de toda Mongolia, incluyendo China: Kublai Khan, el Khan o así conocido en nuestra tierra, el emperador. En esta carta, el motivo de tu desgracia, el Khan pide hombres ilustrados al Papa, hombres que viajen a la China para enseñar a los mongoles el modo de vida occidental.
+
+> coge la carta
+Cogida.
+
+> ex lentes
+Son unos cristales que, perfectamente graduados, permiten corregir tu cansada vista.
+
+> coge las lentes
+Cogidas.
+
+> ex puerta
+Es recia y firme, a pesar de la humedad. Los remaches de acero (eso sí, algo herrumbosos) y el mantenimiento deben ser la explicación.
+
+> ex barrotes
+Son anormalmente gruesos, y rascarlos con tus uñas desnudas no hace mella siquiera en la pintura.
+
+> ex ventana
+Un estrecho agujero en la piedra, atravesado por gruesos barrotes, es la única salida abierta al mundo. Desde allí llega la luz que entra en la estancia.
+
+> ex musgo
+El musgo verde y parcialmente seco se esparce en las junturas de las rocas cercanas a las ventanas, aquellas donde la luz solar incide en algún momento del día. Un musgo pardo y húmedo se acumula en los rincones más oscuros de la celda.
+
+> ex celda
+Una puerta fuerte y un estrecho ventanuco son las únicas características destacables de este agujero cubicular.
+
+> ex piedra
+Aquí y allá se encuentra recubierta de musgo, de humedad o de ambas cosas.
+
+> ex pared
+Las paredes son de piedra, ni una sola fisura podría proporcionar la más mínima posibilidad de escape.
+
+> salir a Pasillo
+> n
+
+Pasillo
+
+Gruesos y húmedos muros de fuerte roca delimitan este pasillo, con unas escaleras que permiten subir hacia el norte, y la puerta de una celda hacia el sur.
+
+> entrar a Celda
+
+> ex guardia
+Está chamuscado, y su pica se ha roto en mil pedazos. Parece estar bien, en conjunto, aunque inconsciente.
+
+>
+

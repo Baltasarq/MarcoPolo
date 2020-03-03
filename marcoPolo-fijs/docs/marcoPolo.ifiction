@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ifindex version="1.0" xmlns="http://babel.ifarchive.org/protocol/iFiction/">
+    <story>
+        <identification>
+            <ifid>9455B9FD-CD86-4A23-ABA7-E1AF4195DD74</ifid>
+            <format>html</format>
+        </identification>
+        <bibliographic>
+            <title>Marco Polo</title>
+            <author>Baltasar</author>
+            <language>ES</language>
+            <headline>La vuelta a casa del famoso explorador italiano, como embajador del Gran Khan.</headline>
+            <genre>historical</genre>
+            <forgiveness>polite</forgiveness>
+            <description>Marco Polo vuelve de su viaje a oriente con un encargo del gran Khan. Desgraciadamente, el recibimiento no será tan grato como esperaba...</description>
+        </bibliographic>
+        <contacts>
+            <authoremail>baltasarq@gmail.com</authoremail>
+            <url>http://caad.es/baltasarq/</url>
+        </contacts>
+        <release>
+            <version>2</version>
+            <releasedate>2020/03/03</releasedate>
+        </release>
+        <colophon>
+            <generator>Babble</generator>
+            <originated>2020/03/03</originated>
+        </colophon>
+    </story>
+</ifindex>
