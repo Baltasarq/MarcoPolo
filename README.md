@@ -1,4 +1,7 @@
 # MarcoPolo
+
+![Piazza de San Marcos](marcoPolo-fijs/app/www/res/san_marcos.jpg)
+
 Ficción interactiva sobre el retorno del explorador italiano a su casa, Venecia.
 
 Marco Polo vuelve de su viaje a oriente con un encargo del gran Khan. Desgraciadamente, el recibimiento no será tan grato como esperaba...
