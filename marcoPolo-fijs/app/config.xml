@@ -35,9 +35,9 @@
         <icon density="xxhdpi" src="res/icon/android/gondola-xxhdpi.png" />
         <icon density="xxxhdpi" src="res/icon/android/gondola-xxxhdpi.png" />
 
-	<icon src="res/icon/android/gondola.png" />
+        <icon src="res/icon/android/gondola.png" />
 
-	<splash src="res/icon/android/gondola.png" />
+        <splash src="res/icon/android/gondola.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
