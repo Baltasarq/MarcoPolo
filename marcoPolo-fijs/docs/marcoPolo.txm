@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Mapa >
+<LocInic>Afueras de Venecia</LocInic>
+<Locs >
+<Loc >
+<Nombre>Afueras de Venecia</Nombre>
+<Desc>
+Un día soleado, de aire fresco. Venecia se adivina en lontananza, mientras la serpenteante caravana se acerca, poco a poco, a la ciudad.
+Notas el roce de tu cuerpo contra el áspero contorno de un sobre. Sabes que ese sobre contiene la importante misión encargada por el Khan.</Desc>
+<ESTE>Palazzo del Duce</ESTE>
+</Loc>
+
+<Loc >
+<Nombre>Canales</Nombre>
+<Desc>
+Abandonas la cárcel del palacio del Duce por la mismísima puerta principal, mientras los guardias venecianos huyen aterrados.
+Mientras tanto, sabes que la confusión no durará eternamente, pero empiezas a pensar en un próximo viaje a oriente.
+¿Será demasiado precipitado salir ahora mismo?</Desc>
+</Loc>
+
+<Loc >
+<Nombre>Celda</Nombre>
+<Desc>
+Un limitado espacio de húmeda piedra es tu morada ahora,
+cuando otrora parecían esperarte sólo las más altas prebendas. Las paredes, suelos y techos están compuestos de desnuda roca, con pedazos de musgo esparcidos aquí y allá. Una ventana de gruesos barrotes proporciona ventilación y luz solar, a la vez que una puerta que nadie abrirá proporciona la única salida de la estancia.
+Los guardias te tiran al interior de la celda. Tras de ti, la puerta se cierra.
+Recuerdas como has llegado hasta aquí ...
+desde las salas del palacio del Duce, aquí, en Venecia ...
+y desde más allá, en oriente, en el Imperio Mongol ...
+tú, Marco Polo, como embajador del Gran Khan.
+Y, diablos, no deja de ser propio de una comedia callejera ...</Desc>
+<NORTE>Escaleras</NORTE>
+</Loc>
+
+<Loc >
+<Nombre>Escaleras</Nombre>
+<Desc>
+.. las ansias expansionistas de los Mongoles no dejan de ser suficientemente fuertes como para que lo dicho por el franciscano, con el tiempo, no pudiera ser verdad ... claro que para eso tendría que saber algo de geografía.
+Las balbuceantes respuestas del antaño poderoso Duce no dejaron de tener tampoco su interés (por decir algo):
+Duce: "Eminencia, no creo que debamos ..."
+Duce: "... pero eminencia ..."
+Duce: "... por favor, eminencia ..."
+Casi ajeno a la escena, pese a ser el protagonista, no puedes dejar de pensar en el cansancio que te produce todo ésto.
+Al fin y al cabo, sobrevivir a la Ruta de la Seda, en viaje de ida a y vuelta, para ser quemado en la hoguera como hereje ... no deja de ser irónico.
+Los guardias venecianos te rodean y te conducen hacia los sótanos de palacio... Bajando escaleras...
+Gruesos y húmedos muros de fuerte roca delimitan este pasillo, con unas escaleras que permiten subir hacia el norte, y la puerta de una celda hacia el sur.
+Un guardia yace tendido en el suelo, inmóvil, presumiblemente debido a la explosión.</Desc>
+<NORTE>Canales</NORTE>
+</Loc>
+
+<Loc >
+<Nombre>Palazzo del Duce</Nombre>
+<Desc>
+La caravana termina su recorrido, entrando en la ciudad. Aún con el ritmo tranquilo de la caravana gobernando tu cuerpo, diriges tu montura hacia el palazzo del Duce...
+Tras solicitar audiencia, como embajador del Gran Khan, eres conducido a la sala del trono...
+La sala del trono está ricamente decorada, aunque no tanto como la de Kublai Khan. Acostumbrado ya al regusto exótico de oriente, occidente parece mucho más sobrio.
+Puedes ver al Duce.</Desc>
+<OESTE>Afueras de Venecia</OESTE>
+</Loc>
+
+</Locs>
+
+<Objs >
+<Obj >
+<Nombre>duce</Nombre>
+<Desc>El Duce, rey de Venecia, envuelto en ricos topajes, escucha pacientemente en su trono. En ocasiones, te parece mira a hurtadillas a derecha e izquierda.</Desc>
+<estaEn>Palazzo del Duce</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+<Obj >
+<Nombre>estatuilla</Nombre>
+<Desc>La figura representa a Diana, la cazadora. El mismísimo Khan te la regaló con una enigmática sonrisa. Su admiración por la antigua Grecia era bien conocida, y siempre pensaste que su sonrisa se trataba de algún tipo de complicidad de un habitante de la estepa con un habitante del Mediterráneo.</Desc>
+<Llevado>S</Llevado>
+<Femenino>S</Femenino>
+</Obj>
+
+<Obj >
+<Nombre>guardia</Nombre>
+<Desc>Está chamuscado, y su pica ha desaparecido, seguramente rota en mil pedazos. Parece estar inconsciente, aunque bien, en conjunto.  Estaría bien comprobar que se encuentra perfectamente.El guardia gime brevemente ... ¡finalmente, no le ha pasado nada!</Desc>
+<estaEn>Escaleras</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+<Obj >
+<Nombre>lentes</Nombre>
+<Desc>Son unos cristales que, perfectamente graduados, permiten corregir tu cansada vista.</Desc>
+<Llevado>S</Llevado>
+<Plural>S</Plural>
+</Obj>
+
+<Obj >
+<Nombre>paredes</Nombre>
+<Desc>Las paredes son de dura roca, ni una sola fisura podría proporcionar la más mínima posibilidad de escape.</Desc>
+<estaEn>Celda</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+<Obj >
+<Nombre>polvora</Nombre>
+<Desc>Un polvo negro de peculiar olor. Lo cierto es que te recuerda a lo que los habitantes de la aún más lejana Cipango conocen como Umami, un sabor intermedio encontrado en un famoso caldo de su cocina tradicional.</Desc>
+<estaEn>Celda</estaEn>
+<Femenino>S</Femenino>
+</Obj>
+
+<Obj >
+<Nombre>puerta</Nombre>
+<Desc>Es recia y firme, a pesar de la humedad. Los remaches de acero (eso sí, algo herrumbosos) y el mantenimiento deben ser la explicación.</Desc>
+<estaEn>Celda</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+<Obj >
+<Nombre>sobre</Nombre>
+<Desc>Es una misiva del rey de toda Mongolia, incluyendo China: Kublai Khan, el Khan o así conocido en nuestra tierra, el emperador. En esta carta, el Khan pide hombres ilustrados al Duce de Venecia, hombres que viajen a la China para enseñar a los mongoles el modo de vida occidental. El Khan, Kublai Khan, te nombró su emisario, una gran responsabilidad que aceptaste con orgullo, pensando en ser el puente de oriente con occidente.</Desc>
+<Llevado>S</Llevado>
+</Obj>
+
+<Obj >
+<Nombre>ventana</Nombre>
+<Desc>Un estrecho agujero en la piedra, atravesado por gruesos barrotes, es la única salida abierta al mundo. Desde allí llega la luz que entra en la estancia. El sol calienta con fuerza.</Desc>
+<estaEn>Celda</estaEn>
+<Escenario>S</Escenario>
+</Obj>
+
+</Objs>
+
+</Mapa>
+
