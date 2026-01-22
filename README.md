@@ -1,6 +1,6 @@
 # MarcoPolo
 
-![Piazza de San Marcos](marcoPolo-fijs/app/www/res/san_marcos.jpg)
+![Piazza de San Marcos](marcoPolo-fijs/www/res/san_marcos.jpg)
 
 Ficción interactiva sobre el retorno del explorador italiano a su casa, Venecia.
 
