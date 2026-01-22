@@ -1,1 +1,1 @@
-marcoPolo-fijs/app/www/marcoPolo.js
+marcoPolo-fijs/www/marcoPolo.js

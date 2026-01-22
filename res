@@ -1,1 +1,1 @@
-marcoPolo-fijs/app/www/res
+marcoPolo-fijs/www/res
